@@ -9,14 +9,17 @@ import './App.css'
 
 class App extends Component {
 
+  // mount as lifecycle
   async componentWillMount() {
     await this.loadWeb3()
     await this.loadBlockchainData()
   }
 
+  // get account data
   async loadBlockchainData() {
     const web3 = window.web3
 
+    // fetch the accounts
     const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] })
 
@@ -58,6 +61,7 @@ class App extends Component {
     this.setState({ loading: false })
   }
 
+  // connect to eth blockchain
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
